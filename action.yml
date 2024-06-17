@@ -14,6 +14,7 @@ runs:
   steps:
     - uses: actions/checkout@v4
       with:
+        repository: jwcarmichael12/test-component-action
         sparse-checkout: |
           artifacts/devops-deploy-client.zip
         sparse-checkout-cone-mode: false
