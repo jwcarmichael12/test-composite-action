@@ -12,16 +12,11 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v4
-      with:
-        repository: jwcarmichael12/test-composite-action
-        sparse-checkout: |
-          artifacts/devops-deploy-client.zip
-        sparse-checkout-cone-mode: false
+    - uses: actions/test-composite-action@v1
 
     - name: setup udclient
       id: udclient-setup
-      run: unzip devops-deploy-client.zip&ls -la
+      run: unzip artifacts/devops-deploy-client.zip&ls -la artifacts
       shell: bash
  
     - name: Set Greeting
