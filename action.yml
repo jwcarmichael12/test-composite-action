@@ -20,7 +20,7 @@ runs:
         path: tools
     - name: setup udclient
       id: udclient-setup
-      run: ls -la&unzip artifacts/devops-deploy-client.zip&ls -la artifacts
+      run: cd tools&unzip devops-deploy-client.zip&ls -la
       shell: bash
  
     - name: Set Greeting
