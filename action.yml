@@ -17,10 +17,11 @@ runs:
         repository: jwcarmichael12/test-composite-action
         sparse-checkout: |
           artifacts/devops-deploy-client.zip
+        sparse-checkout-cone-mode: false
         path: tools
     - name: setup udclient
       id: udclient-setup
-      run: ls -la tools
+      run: ls -la tools/artifacts&unzip tools/artifacts/devops-deploy-client.zip&ls -la tools/artifacts
       shell: bash
  
     - name: Set Greeting
