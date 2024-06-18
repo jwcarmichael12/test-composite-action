@@ -12,7 +12,7 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/test-composite-action@v1
+    - uses: jwcarmichael12/test-composite-action@v3
 
     - name: setup udclient
       id: udclient-setup
