@@ -1,5 +1,58 @@
 name: 'Test Composite Action'
 description: 'Figure out how this works'
+inputs:
+  component:
+    description: 'Component Name/ID'
+    required: true
+  versionname:
+    description: 'Component Version Name'
+    required: true
+  description:
+    description: 'Component version description'
+    required: false
+  link:
+    description: 'URL to add to component version'
+    required: false
+  base:
+    description: 'Local base directory containing files to upload if file upload is required'
+    required: false
+  offset:
+    description: 'Target path offset (the directory in the version files to which these files should be added)'
+    required: false
+  include:
+    description: 'An include file pattern for selecting files to add (may be repeated)'
+    required: false
+  exclude:
+    description: 'An exclude file pattern for excluding files (may be repeated). Overrides includes.'
+    required: false
+  saveExecuteBits:
+    description: 'Saves execute bits for files.'
+    required: true
+    type: boolean
+    default: false
+  hostname:
+    description: 'DevOps Deploy hostname'
+    required: true
+  port:
+    description: 'port'
+    required: true
+    default: '8443'
+  username:
+    description: 'username'
+    required: false
+  password:
+    description: 'password'
+    required: false
+    secret: true
+  authToken:
+    description: 'DevOps Deploy authentication token'
+    required: false
+    secret: true
+  disableSSLVerification:
+    description: 'skip SSL certificate validation when making HTTPS requests and this is discouraged'
+    required: true
+    type: boolean
+    default: false
 runs:
   using: "composite"
   steps:
@@ -20,10 +73,9 @@ runs:
       shell: bash
     - name: run udclient
       id: udclient-run
-      run: udclient/udclient
-      shell: bash
-    - name: Set GitHub Path
-      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      run: udclient/udclient --help
       shell: bash
       env:
-        GITHUB_ACTION_PATH: ${{ github.action_path }}
+        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        
