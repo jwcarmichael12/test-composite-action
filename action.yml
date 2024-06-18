@@ -10,10 +10,17 @@ runs:
           artifacts/devops-deploy-client.zip
         sparse-checkout-cone-mode: false
         path: tools
-    - name: setup udclient
-      id: udclient-setup
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'adopt-openj9' # See 'Supported distributions' for available options
+        java-version: '11'
+    - name: install udclient
+      id: udclient-install
       run: ls -la &ls -la tools&unzip tools/artifacts/devops-deploy-client.zip&ls -la tools/artifacts
       shell: bash
+    - name: run udclient
+      id: udclient-run
+      run: tools/artifacts/udclient
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
