@@ -13,9 +13,10 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v4
-      shell: bash
-      repository: jwcarmichael12/test-composite-action
-      path: tools
+      with:
+        shell: bash
+        repository: jwcarmichael12/test-composite-action
+        path: tools
     - name: setup udclient
       id: udclient-setup
       run: ls -la&unzip artifacts/devops-deploy-client.zip&ls -la artifacts
