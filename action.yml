@@ -14,8 +14,9 @@ runs:
   steps:
     - uses: actions/checkout@v4
       with:
-        shell: bash
         repository: jwcarmichael12/test-composite-action
+        sparse-checkout: |
+          artifacts/devops-deploy-client.zip
         path: tools
     - name: setup udclient
       id: udclient-setup
