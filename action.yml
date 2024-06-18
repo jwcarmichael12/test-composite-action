@@ -12,11 +12,9 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: jwcarmichael12/test-composite-action@v3
-
     - name: setup udclient
       id: udclient-setup
-      run: unzip artifacts/devops-deploy-client.zip&ls -la artifacts
+      run: ls -la&unzip artifacts/devops-deploy-client.zip&ls -la artifacts
       shell: bash
  
     - name: Set Greeting
