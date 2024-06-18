@@ -80,7 +80,7 @@ runs:
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
     - name: Finish Importing
       id: finish-importing
-      run: udclient/udclient finishedImporting -component ${{ inputs.component }} -version ${{ inputs.versionname }}
+      run: udclient/udclient finishImporting -component ${{ inputs.component }} -version ${{ inputs.versionname }}
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
