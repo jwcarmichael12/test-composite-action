@@ -21,6 +21,7 @@ runs:
     - name: run udclient
       id: udclient-run
       run: tools/artifacts/udclient
+      shell: bash
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
       shell: bash
