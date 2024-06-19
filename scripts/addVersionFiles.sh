@@ -23,7 +23,7 @@ then
   echo "Component name not specified.  Exiting"
   exit 1
 else
-  base_cmd += " -component \"$FILES_COMPONENTNAME\""
+  base_cmd+=" -component \"$FILES_COMPONENTNAME\""
 fi
 
 # Specify component version name
@@ -32,7 +32,7 @@ then
   echo "Version name not specified.  Exiting"
   exit 1
 else
-  base_cmd += " -version \"$FILES_VERSIONNAME\""
+  base_cmd+=" -version \"$FILES_VERSIONNAME\""
 fi
 
 if [ -z $FILES_BASE ]
@@ -40,7 +40,7 @@ then
   echo "No base files specified. Exiting"
   exit 1
 else
-  base_cmd += " -base \"$FILES_BASE\""
+  base_cmd+=" -base \"$FILES_BASE\""
 fi
 
 echo $base_cmd
