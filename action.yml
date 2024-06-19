@@ -1,4 +1,4 @@
-name: 'Test Composite Action'
+name: 'Create Component Version Composite Action'
 description: 'Create Component Version, Add Version Link, Add Version Files, Add Version Properties'
 inputs:
   component:
@@ -114,7 +114,7 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        udclient/udclient addVersionFiles -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -base  "${{ inputs.base }}" -offset "${{ inputs.offset }}" -include "${{ inputs.include }}" -exclude "${{ inputs.exclude }}" -saveExecuteBits ${{ inputs.saveExecuteBits }}
+        scripts/addVersionFile.sh udclient/udclient "${{ inputs.component }}" "${{ inputs.versioname }}" "${{ inputs.base }}" "${{ inputs.offset }}" "${{ inputs.include }}" "${{ inputs.exclude }}" ${{ inputs.saveExecuteBits }}
       shell: bash
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
