@@ -68,12 +68,13 @@ runs:
   using: "composite"
   
   steps:
-    # Download udclient package from composite action github repository
+    # Download udclient package and command shell scripts from composite action github repository
     - uses: actions/checkout@v4
       with:
         repository: jwcarmichael12/test-composite-action
         sparse-checkout: |
           artifacts/devops-deploy-client.zip
+          artifacts/addVersionFiles.sh
         sparse-checkout-cone-mode: false
         path: tools
         
@@ -86,7 +87,7 @@ runs:
     # Expand the udclient package to access the executable
     - name: Install udclient
       id: udclient-install
-      run: unzip tools/artifacts/devops-deploy-client.zip
+      run: ls -la tools&&unzip tools/artifacts/devops-deploy-client.zip
       shell: bash
       
     # Create component version
