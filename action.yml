@@ -95,6 +95,16 @@ runs:
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+
+    # Add Version Files if specified
+    - name: Add component version files
+      id: add-version-files
+      if: ${{ inputs.base }}
+      run: udclient/udclient addVersionFiles -component ${{ inputs.component }} -version ${{ inputs.versionname }} -base  ${{ inputs.base }}
+      shell: bash
+      env:
+        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
       
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
