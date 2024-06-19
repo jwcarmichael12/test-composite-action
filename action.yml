@@ -66,12 +66,15 @@ inputs:
     default: false
 runs:
   using: "composite"
-  
-  env:
-    DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-    DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+
   
   steps:
+    
+    # Add environment variables required to run udclient
+    - env:
+      DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+      DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+      
     # Download udclient package from composite action github repository
     - uses: actions/checkout@v4
       with:
