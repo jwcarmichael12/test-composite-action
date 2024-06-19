@@ -6,6 +6,7 @@
 #   - JAVA_HOME environment variable is set
 
 set -x
+BASE_CMD=""
 
 # Create the command to execute
 if [ -z $FILES_CMD ]
