@@ -114,11 +114,19 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        deploy/scripts/addVersionFiles.sh udclient/udclient "${{ inputs.component }}" "${{ inputs.versionname }}" "${{ inputs.base }}" "${{ inputs.offset }}" "${{ inputs.include }}" "${{ inputs.exclude }}" ${{ inputs.saveExecuteBits }}
+        deploy/scripts/addVersionFiles.sh
       shell: bash
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}    
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        FILES_CMD: "udclient/udclient"
+        FILES_COMPONENTNAME: "${{ inputs.component }}"
+        FILES_VERSIONNAME: "${{ inputs.versionname }}"
+        FILES_BASE: "${{ inputs.base }}"
+        FILES_OFFSET: "${{ inputs.offset }}"
+        FILES_INCLUDE: "${{ inputs.include }}"
+        FILES_EXCLUDE: "${{ inputs.exclude }}"
+        FILES_SAVEEXECUTEBITS: ${{ inputs.saveExecuteBits }}
       
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
