@@ -16,15 +16,19 @@ inputs:
   base:
     description: 'Local base directory containing files to upload if file upload is required'
     required: false
+    default: ""
   offset:
     description: 'Target path offset (the directory in the version files to which these files should be added)'
     required: false
+    default: ""
   include:
     description: 'An include file pattern for selecting files to add (may be repeated)'
     required: false
+    default: ""
   exclude:
     description: 'An exclude file pattern for excluding files (may be repeated). Overrides includes.'
     required: false
+    default: ""
   saveExecuteBits:
     description: 'Saves execute bits for files.'
     required: true
@@ -100,7 +104,8 @@ runs:
     - name: Add component version files
       id: add-version-files
       if: ${{ inputs.base }}
-      run: udclient/udclient addVersionFiles -component ${{ inputs.component }} -version ${{ inputs.versionname }} -base  ${{ inputs.base }}
+      run: |
+        udclient/udclient addVersionFiles -component ${{ inputs.component }} -version ${{ inputs.versionname }} -base  ${{ inputs.base }} -offset ${{ inputs.offset }} -include ${{ inputs.include }} -exclude ${{ inputs.exclude }} -saveExecuteBits ${{ inputs.saveExecuteBits }}
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
