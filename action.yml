@@ -19,19 +19,15 @@ inputs:
   base:
     description: 'Local base directory containing files to upload if file upload is required'
     required: false
-    default: ""
   offset:
     description: 'Target path offset (the directory in the version files to which these files should be added)'
     required: false
-    default: ""
   include:
     description: 'An include file pattern for selecting files to add (may be repeated)'
     required: false
-    default: ""
   exclude:
     description: 'An exclude file pattern for excluding files (may be repeated). Overrides includes.'
     required: false
-    default: ""
   saveExecuteBits:
     description: 'Saves execute bits for files.'
     required: false
