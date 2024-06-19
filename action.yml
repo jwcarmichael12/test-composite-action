@@ -74,9 +74,9 @@ runs:
         repository: jwcarmichael12/test-composite-action
         sparse-checkout: |
           artifacts/devops-deploy-client.zip
-          artifacts/addVersionFiles.sh
+          scripts/addVersionFiles.sh
         sparse-checkout-cone-mode: false
-        path: tools
+        path: deploy
         
     # Setup java environment needed to run the udclient
     - uses: actions/setup-java@v4
@@ -87,7 +87,7 @@ runs:
     # Expand the udclient package to access the executable
     - name: Install udclient
       id: udclient-install
-      run: ls -la tools&&unzip tools/artifacts/devops-deploy-client.zip
+      run: ls -la deploy&&ls -la deploy/scripts&& ls -la deploy/artifacts&&unzip deploy/artifacts/devops-deploy-client.zip
       shell: bash
       
     # Create component version
