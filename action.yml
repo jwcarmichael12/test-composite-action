@@ -1,5 +1,5 @@
 name: 'Test Composite Action'
-description: 'Figure out how this works'
+description: 'Create Component Version, Add Version Link, Add Version Files, Add Version Properties'
 inputs:
   component:
     description: 'Component Name/ID'
@@ -56,6 +56,7 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # Download udclient package from composite action github repository
     - uses: actions/checkout@v4
       with:
         repository: jwcarmichael12/test-composite-action
@@ -63,21 +64,25 @@ runs:
           artifacts/devops-deploy-client.zip
         sparse-checkout-cone-mode: false
         path: tools
+    # Setup java environment needed to run the udclient
     - uses: actions/setup-java@v4
       with:
         distribution: 'adopt-openj9' # See 'Supported distributions' for available options
         java-version: '11'
+    # Expand the udclient package to access the executable
     - name: Install udclient
       id: udclient-install
       run: unzip tools/artifacts/devops-deploy-client.zip
       shell: bash
-    - name: Run udclient
-      id: udclient-run
+    # Create component version
+    - name: Create component version
+      id: create-component-version
       run: udclient/udclient createVersion -component ${{ inputs.component }} -name ${{ inputs.versionname }}  --importing true
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+    # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
       run: udclient/udclient finishedImporting -component ${{ inputs.component }} -version ${{ inputs.versionname }}
