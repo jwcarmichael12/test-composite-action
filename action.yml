@@ -114,7 +114,7 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        export&&deploy/scripts/addVersionFiles.sh
+        deploy/scripts/addVersionFiles.sh
       shell: bash
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
