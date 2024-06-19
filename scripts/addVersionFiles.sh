@@ -35,5 +35,10 @@ else
     usage
 fi
 
+# Create the command to execute
+BASE_CMD="$CMD_PATH addVersionFiles -component '$2' -version '$3 -base '$4'"
+
+if [ -z $5 ]
+
 # Invoke the udclient to add version files to the component version
-$CMD_PATH addVersionFiles -component "$2" -version "$3" -base "$4"
+$BASE_CMD
