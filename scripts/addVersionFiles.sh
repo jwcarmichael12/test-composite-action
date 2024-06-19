@@ -18,6 +18,7 @@ usage() {
     exit 1
 }
 
+# Must specify cmdpath, componentName, componentVersion and base
 if [ $# -lt 4 ]
 then
     usage
@@ -25,6 +26,7 @@ fi
 
 set -x
 
+# Make sure that the cmdpath specifies and executable file
 if [ -x "$1" ]
 then
     CMD_PATH=$1
@@ -33,4 +35,5 @@ else
     usage
 fi
 
+# Invoke the udclient to add version files to the component version
 $CMD_PATH addVersionFiles -component "$2" -version "$3" -base "$4"
