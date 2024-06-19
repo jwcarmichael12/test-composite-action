@@ -84,7 +84,7 @@ runs:
     # Create component version
     - name: Create component version
       id: create-component-version
-      run: udclient/udclient createVersion -component ${{ inputs.component }} -name "${{ inputs.versionname }}"  --importing true
+      run: udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
@@ -94,7 +94,7 @@ runs:
     - name: Add component version link
       id: add-version-link
       if: ${{ inputs.link }}
-      run: udclient/udclient addVersionLink -component ${{ inputs.component }} -version ${{ inputs.versionname }} -linkName "Git commit" -link ${{ inputs.link }}
+      run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "Git commit" -link "${{ inputs.link }}"
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
@@ -105,7 +105,7 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        udclient/udclient addVersionFiles -component ${{ inputs.component }} -version ${{ inputs.versionname }} -base  ${{ inputs.base }} -offset ${{ inputs.offset }} -include ${{ inputs.include }} -exclude ${{ inputs.exclude }} -saveExecuteBits ${{ inputs.saveExecuteBits }}
+        udclient/udclient addVersionFiles -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -base  "${{ inputs.base }}" -offset "${{ inputs.offset }}" -include "${{ inputs.include }}" -exclude "${{ inputs.exclude }}" -saveExecuteBits ${{ inputs.saveExecuteBits }}
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
@@ -114,7 +114,7 @@ runs:
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
-      run: udclient/udclient finishedImporting -component ${{ inputs.component }} -version ${{ inputs.versionname }}
+      run: udclient/udclient finishedImporting -component "${{ inputs.component }}" -version "${{ inputs.versionname }}"
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
