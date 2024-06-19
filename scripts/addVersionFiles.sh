@@ -5,6 +5,8 @@
 #   - udclient weburl (DS_WEB_URL) is set
 #   - JAVA_HOME environment variable is set
 
+set -x
+
 # Create the command to execute
 if [ -z $FILES_CMD ]
   echo "udclient command not specified.  Exiting"
@@ -35,6 +37,8 @@ if [ -z $FILES_BASE ]
 else
   BASE_CMD = "$BASE_CMD -base \"$FILES_BASE\""
 fi
+
+echo $BASE_CMD
 
 # Invoke the udclient to add version files to the component version
 eval $BASE_CMD
