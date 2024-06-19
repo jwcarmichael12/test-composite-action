@@ -114,7 +114,7 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        scripts/addVersionFile.sh udclient/udclient "${{ inputs.component }}" "${{ inputs.versioname }}" "${{ inputs.base }}" "${{ inputs.offset }}" "${{ inputs.include }}" "${{ inputs.exclude }}" ${{ inputs.saveExecuteBits }}
+        scripts/addVersionFiles.sh udclient/udclient "${{ inputs.component }}" "${{ inputs.versioname }}" "${{ inputs.base }}" "${{ inputs.offset }}" "${{ inputs.include }}" "${{ inputs.exclude }}" ${{ inputs.saveExecuteBits }}
       shell: bash
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
