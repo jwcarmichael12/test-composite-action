@@ -85,7 +85,17 @@ runs:
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
-        
+
+    # Add Version Link if one is specified
+    - name: Add component version link
+      id: add-version-link
+      if: ${{ inputs.link }}
+      run: udclient/udclient addVersionLink -component ${{ inputs.component }} -version ${{ inputs.versionname }} -linkname "Git commit" -link ${{ inputs.link }}
+      shell: bash
+      env:
+        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+      
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
