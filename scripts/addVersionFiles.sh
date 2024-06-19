@@ -35,12 +35,33 @@ else
   base_cmd+=" -version \"$FILES_VERSIONNAME\""
 fi
 
+# Specify local path
 if [ -z $FILES_BASE ]
 then
   echo "No base files specified. Exiting"
   exit 1
 else
   base_cmd+=" -base \"$FILES_BASE\""
+fi
+
+if [ -n $FILES_OFFSET ]
+then
+  base_cmd+=" -offset \"$FILES_OFFSET\""
+fi
+
+if [ -n $FILES_INCLUDE ]
+then
+  base_cmd+=" -include \"$FILES_INCLUDE\""
+fi
+
+if [ -n $FILES_EXCLUDE ]
+then
+  base_cmd+=" -exclude \"$FILES_EXCLUDE\""
+fi
+
+if [ -n $FILES_SAVEEXECUTEBITS ]
+then
+  base_cmd+=" -saveExecuteBits \"$FILES_SAVEEXECUTEBITS\""
 fi
 
 echo $base_cmd
