@@ -27,7 +27,7 @@ else
 fi
 
 # Specify component version name
-if [ -z $FILES_VERSIONNAME ]
+if [ -z "$FILES_VERSIONNAME" ]
 then
   echo "Version name not specified.  Exiting"
   exit 1
@@ -44,7 +44,7 @@ else
   base_cmd+=" -base \"$FILES_BASE\""
 fi
 
-if [ -n \"$FILES_OFFSET\" ]
+if [ -n "$FILES_OFFSET" ]
 then
   base_cmd+=" -offset \"$FILES_OFFSET\""
 fi
