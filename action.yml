@@ -24,7 +24,7 @@ inputs:
   include:
     description: 'An include file pattern for selecting files to add (may be repeated)'
     required: false
-    default: ""
+    default: "*"
   exclude:
     description: 'An exclude file pattern for excluding files (may be repeated). Overrides includes.'
     required: false
