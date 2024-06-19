@@ -41,4 +41,4 @@ fi
 echo $BASE_CMD
 
 # Invoke the udclient to add version files to the component version
-eval $BASE_CMD
+# eval $BASE_CMD
