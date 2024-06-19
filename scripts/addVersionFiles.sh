@@ -6,11 +6,12 @@
 #   - JAVA_HOME environment variable is set
 
 # Create the command to execute
-if [ -z FILES_CMD ]
+if [ -z $FILES_CMD ]
   echo "udclient command not specified.  Exiting"
   exit 1
 else
   BASE_CMD="\"$CMD_PATH\" addVersionFiles"
+fi
 
 # Specify component name
 if [ -z $FILES_COMPONENTNAME ]
@@ -18,6 +19,7 @@ if [ -z $FILES_COMPONENTNAME ]
   exit 1
 else
   BASE_CMD = "$BASE_CMD -component \"$FILES_COMPONENTNAME\""
+fi
 
 # Specify component version name
 if [ -z $FILES_VERSIONNAME ]
@@ -25,6 +27,7 @@ if [ -z $FILES_VERSIONNAME ]
   exit 1
 else
   BASE_CMD = "$BASE_CMD -version \"$FILES_VERSIONNAME\""
+fi
 
 if [ -z $FILES_BASE ]
   echo "No base files specified. Exiting"
