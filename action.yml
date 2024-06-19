@@ -73,7 +73,7 @@ runs:
       shell: bash
     - name: Run udclient
       id: udclient-run
-      run: udclient/udclient createVersion -component ${{ inputs.component }} -name ${{ inputs.versionname }}
+      run: udclient/udclient createVersion -component ${{ inputs.component }} -name ${{ inputs.versionname }}  --importing true
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
