@@ -90,7 +90,7 @@ runs:
     - name: Add component version link
       id: add-version-link
       if: ${{ inputs.link }}
-      run: udclient/udclient addVersionLink -component ${{ inputs.component }} -version ${{ inputs.versionname }} -linkname "Git commit" -link ${{ inputs.link }}
+      run: udclient/udclient addVersionLink -component ${{ inputs.component }} -version ${{ inputs.versionname }} -linkName "Git commit" -link ${{ inputs.link }}
       shell: bash
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
