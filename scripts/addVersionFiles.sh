@@ -44,22 +44,22 @@ else
   base_cmd+=" -base \"$FILES_BASE\""
 fi
 
-if [ -n "$FILES_OFFSET" ]
+if [ ! -z "$FILES_OFFSET" ]
 then
   base_cmd+=" -offset \"$FILES_OFFSET\""
 fi
 
-if [ -n $FILES_INCLUDE ]
+if [ ! -z $FILES_INCLUDE ]
 then
   base_cmd+=" -include \"$FILES_INCLUDE\""
 fi
 
-if [ -n $FILES_EXCLUDE ]
+if [ ! -z $FILES_EXCLUDE ]
 then
   base_cmd+=" -exclude \"$FILES_EXCLUDE\""
 fi
 
-if [ -n $FILES_SAVEEXECUTEBITS ]
+if [ ! -z $FILES_SAVEEXECUTEBITS ]
 then
   base_cmd+=" -saveExecuteBits \"$FILES_SAVEEXECUTEBITS\""
 fi
