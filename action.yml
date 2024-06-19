@@ -10,8 +10,11 @@ inputs:
   description:
     description: 'Component version description'
     required: false
+  linkName:
+    description: 'Name of link to add to component version'
+    required: false
   link:
-    description: 'URL to add to component version'
+    description: 'Value of the link to add to component version'
     required: false
   base:
     description: 'Local base directory containing files to upload if file upload is required'
@@ -34,6 +37,10 @@ inputs:
     required: true
     type: boolean
     default: false
+  urlType:
+    description: 'URL protocol to use to connect to DevOps Deploy hostname'
+    required: false
+    default: 'https:'
   hostname:
     description: 'DevOps Deploy hostname'
     required: true
@@ -59,6 +66,11 @@ inputs:
     default: false
 runs:
   using: "composite"
+  
+  env:
+    DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+    DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+  
   steps:
     # Download udclient package from composite action github repository
     - uses: actions/checkout@v4
@@ -86,19 +98,14 @@ runs:
       id: create-component-version
       run: udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
       shell: bash
-      env:
-        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Link if one is specified
     - name: Add component version link
       id: add-version-link
+      if: ${{ inputs.linkName }}
       if: ${{ inputs.link }}
-      run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "Git commit" -link "${{ inputs.link }}"
+      run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "${{ inputs.linkName }}" -link "${{ inputs.link }}"
       shell: bash
-      env:
-        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Files if specified
     - name: Add component version files
@@ -107,16 +114,9 @@ runs:
       run: |
         udclient/udclient addVersionFiles -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -base  "${{ inputs.base }}" -offset "${{ inputs.offset }}" -include "${{ inputs.include }}" -exclude "${{ inputs.exclude }}" -saveExecuteBits ${{ inputs.saveExecuteBits }}
       shell: bash
-      env:
-        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
       
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
       run: udclient/udclient finishedImporting -component "${{ inputs.component }}" -version "${{ inputs.versionname }}"
-      shell: bash
-      env:
-        DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
-        
+      shell: bash        
