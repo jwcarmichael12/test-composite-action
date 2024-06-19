@@ -66,11 +66,6 @@ inputs:
     default: false
 runs:
   using: "composite"
-
-  # Add environment variables required to run udclient
-  env:
-    DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-    DS_AUTH_TOKEN: ${{ inputs.authtoken }}
   
   steps:
     # Download udclient package from composite action github repository
@@ -99,6 +94,9 @@ runs:
       id: create-component-version
       run: udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
       shell: bash
+      env:
+        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Link if one is specified
     - name: Add component version link
@@ -107,6 +105,9 @@ runs:
       if: ${{ inputs.link }}
       run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "${{ inputs.linkName }}" -link "${{ inputs.link }}"
       shell: bash
+      env:
+        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Files if specified
     - name: Add component version files
@@ -115,9 +116,15 @@ runs:
       run: |
         udclient/udclient addVersionFiles -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -base  "${{ inputs.base }}" -offset "${{ inputs.offset }}" -include "${{ inputs.include }}" -exclude "${{ inputs.exclude }}" -saveExecuteBits ${{ inputs.saveExecuteBits }}
       shell: bash
+      env:
+        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}    
       
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
       run: udclient/udclient finishedImporting -component "${{ inputs.component }}" -version "${{ inputs.versionname }}"
-      shell: bash        
+      shell: bash
+      env:
+        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
