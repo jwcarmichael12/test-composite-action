@@ -101,8 +101,7 @@ runs:
     # Add Version Link if one is specified
     - name: Add component version link
       id: add-version-link
-      if: ${{ inputs.linkName }}
-      if: ${{ inputs.link }}
+      if: ${{ inputs.linkName }} && ${{ inputs.link }}
       run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "${{ inputs.linkName }}" -link "${{ inputs.link }}"
       shell: bash
       env:
