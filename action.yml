@@ -1,4 +1,4 @@
-name: 'Create Component Version Composite Action'
+xpname: 'Create Component Version Composite Action'
 description: 'Create Component Version, Add Version Link, Add Version Files, Add Version Properties'
 inputs:
   component:
@@ -87,7 +87,7 @@ runs:
     # Expand the udclient package to access the executable
     - name: Install udclient
       id: udclient-install
-      run: ls -la deploy&&ls -la deploy/scripts&& ls -la deploy/artifacts&&unzip deploy/artifacts/devops-deploy-client.zip
+      run: unzip deploy/artifacts/devops-deploy-client.zip
       shell: bash
       
     # Create component version
@@ -114,7 +114,7 @@ runs:
       id: add-version-files
       if: ${{ inputs.base }}
       run: |
-        deploy/scripts/addVersionFiles.sh
+        export&&deploy/scripts/addVersionFiles.sh
       shell: bash
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
