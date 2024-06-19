@@ -9,6 +9,7 @@ set -x
 
 # Create the command to execute
 if [ -z $FILES_CMD ]
+then
   echo "udclient command not specified.  Exiting"
   exit 1
 else
@@ -17,6 +18,7 @@ fi
 
 # Specify component name
 if [ -z $FILES_COMPONENTNAME ]
+then
   echo "Component name not specified.  Exiting"
   exit 1
 else
@@ -25,6 +27,7 @@ fi
 
 # Specify component version name
 if [ -z $FILES_VERSIONNAME ]
+then
   echo "Version name not specified.  Exiting"
   exit 1
 else
@@ -32,6 +35,7 @@ else
 fi
 
 if [ -z $FILES_BASE ]
+then
   echo "No base files specified. Exiting"
   exit 1
 else
@@ -41,4 +45,4 @@ fi
 echo $BASE_CMD
 
 # Invoke the udclient to add version files to the component version
-# eval $BASE_CMD
+eval $BASE_CMD
