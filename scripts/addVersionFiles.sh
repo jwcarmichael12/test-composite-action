@@ -13,7 +13,7 @@ then
   echo "udclient command not specified.  Exiting"
   exit 1
 else
-  BASE_CMD="\"$CMD_PATH\" addVersionFiles"
+  BASE_CMD="\"$FILES_CMD\" addVersionFiles"
 fi
 
 # Specify component name
