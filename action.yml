@@ -64,16 +64,19 @@ runs:
           artifacts/devops-deploy-client.zip
         sparse-checkout-cone-mode: false
         path: tools
+        
     # Setup java environment needed to run the udclient
     - uses: actions/setup-java@v4
       with:
         distribution: 'adopt-openj9' # See 'Supported distributions' for available options
         java-version: '11'
+        
     # Expand the udclient package to access the executable
     - name: Install udclient
       id: udclient-install
       run: unzip tools/artifacts/devops-deploy-client.zip
       shell: bash
+      
     # Create component version
     - name: Create component version
       id: create-component-version
@@ -82,6 +85,7 @@ runs:
       env:
         DS_WEB_URL: https://${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
