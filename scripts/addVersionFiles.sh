@@ -44,7 +44,7 @@ else
   base_cmd+=" -base \"$FILES_BASE\""
 fi
 
-if [ -n $FILES_OFFSET ]
+if [ -n \"$FILES_OFFSET\" ]
 then
   base_cmd+=" -offset \"$FILES_OFFSET\""
 fi
