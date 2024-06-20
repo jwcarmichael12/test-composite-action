@@ -5,7 +5,7 @@
 #   - udclient weburl (DS_WEB_URL) is set
 #   - JAVA_HOME environment variable is set
 
-set -x
+#set -x
 base_cmd=""
 
 # Create the command to execute
