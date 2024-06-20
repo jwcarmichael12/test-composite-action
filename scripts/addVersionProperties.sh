@@ -9,7 +9,7 @@ set -x
 base_cmd=""
 
 # Create the command to execute
-if [ -z $VERSION_PROPERTY_CMD ]
+if [ -z $VERSION_PROPERTIES_CMD ]
 then
   echo "udclient command not specified.  Exiting"
   exit 1
