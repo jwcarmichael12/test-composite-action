@@ -73,6 +73,7 @@ runs:
         sparse-checkout: |
           artifacts/devops-deploy-client.zip
           scripts/addVersionFiles.sh
+          scripts/addVersionProperties.sh
         sparse-checkout-cone-mode: false
         path: deploy
         
