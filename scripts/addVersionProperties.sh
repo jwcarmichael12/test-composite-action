@@ -36,7 +36,7 @@ else
 fi
 
 # Create to make sure that at least 1 version property was specified
-if [ -z $VERSION_PROPERTIES ]
+if [ -z "$VERSION_PROPERTIES" ]
 then
   echo "version properties not specified.  Exiting"
   exit 1
