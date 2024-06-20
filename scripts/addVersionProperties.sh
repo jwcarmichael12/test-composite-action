@@ -35,7 +35,7 @@ else
   base_cmd+=" -version \"$VERSION_PROPERTIES_VERSIONNAME\""
 fi
 
-# Create to make sure that at least 1 version property was specified
+# Check to make sure that at least 1 version property was specified
 if [ -z "$VERSION_PROPERTIES" ]
 then
   echo "version properties not specified.  Exiting"
