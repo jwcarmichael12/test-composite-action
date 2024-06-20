@@ -47,6 +47,9 @@ do
     echo $key
     echo $value
     echo $secure
+    base_cmd+=" -name \"$key" -value \"$value" -secure $secure"
+    echo $base_cmd
+    eval $base_cmd
 done <<< $VERSION_PROPERTIES
 
 # Invoke the udclient to add version files to the component version
