@@ -42,6 +42,8 @@ then
   exit 1
 fi
 
+echo $VERSION_PROPERTIES
+echo "*********"
 echo $base_cmd
 
 # Invoke the udclient to add version files to the component version
