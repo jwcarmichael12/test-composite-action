@@ -9,6 +9,15 @@ set -x
 base_cmd=""
 
 # Create the command to execute
+if [ -z $VERSION_PROPERTY_CMD ]
+then
+  echo "udclient command not specified.  Exiting"
+  exit 1
+else
+  base_cmd="\"$FILES_CMD\" setVersionProperty"
+fi
+
+# Create the command to execute
 if [ -z $VERSION_PROPERTIES ]
 then
   echo "version properties not specified.  Exiting"
