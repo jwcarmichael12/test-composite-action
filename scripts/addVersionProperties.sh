@@ -42,7 +42,8 @@ then
   exit 1
 fi
 
-IFS=':' while read key value secure remainder
+IFS=:
+while read key value secure remainder
 do
     echo $key
     echo $value
