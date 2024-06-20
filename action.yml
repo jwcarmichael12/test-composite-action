@@ -32,9 +32,9 @@ inputs:
     description: 'Saves execute bits for files.'
     required: false
     type: boolean
-  versionProperties: |-
-    Prop1:Test:false
-    Prop2:Test2:true
+  versionProperties:
+    description: 'Properties to set on the component version.  Each property must name name:value:secure.  If you have multiple properties, then they should be separated by a new line character'
+    required: false
   urlType:
     description: 'URL protocol to use to connect to DevOps Deploy hostname'
     required: false
