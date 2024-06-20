@@ -14,7 +14,7 @@ then
   echo "udclient command not specified.  Exiting"
   exit 1
 else
-  base_cmd="\"$FILES_CMD\" setVersionProperty"
+  base_cmd="\"$VERSION_PROPERTIES_CMD\" setVersionProperty"
 fi
 
 # Specify component name
