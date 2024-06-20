@@ -42,9 +42,13 @@ then
   exit 1
 fi
 
-echo $VERSION_PROPERTIES
-echo "*********"
-echo $base_cmd
+IFS=:
+while read key value secure remainder
+do
+    echo $key
+    echo $value
+    echo $secure
+done <<< $VERSION_PROPERTIES
 
 # Invoke the udclient to add version files to the component version
 # eval $base_cmd
