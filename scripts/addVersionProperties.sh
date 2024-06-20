@@ -42,6 +42,8 @@ then
   exit 1
 fi
 
+echo $base_cmd
+
 IFS=:
 while read key value secure remainder
 do
