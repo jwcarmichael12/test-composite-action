@@ -125,7 +125,22 @@ runs:
         FILES_INCLUDE: "${{ inputs.include }}"
         FILES_EXCLUDE: "${{ inputs.exclude }}"
         FILES_SAVEEXECUTEBITS: ${{ inputs.saveExecuteBits }}
-      
+
+    # Add Version Properties if specified
+    - name: Add component version properties
+      id: add-version-properties
+      if: ${{ inputs.versionProperties }}
+      run: |
+        deploy/scripts/addVersionProperties.sh
+      shell: bash
+      env:
+        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        FILES_CMD: "udclient/udclient"
+        FILES_COMPONENTNAME: "${{ inputs.component }}"
+        FILES_VERSIONNAME: "${{ inputs.versionname }}"
+        VERSION_PROPERTIES: "${{ inputs.versionProperties }}"
+    
     # Tell devops deploy server that component version creation is complete
     - name: Finish Importing
       id: finish-importing
