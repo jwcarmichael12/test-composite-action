@@ -32,6 +32,9 @@ inputs:
     description: 'Saves execute bits for files.'
     required: false
     type: boolean
+  versionProperties: |-
+    Prop1:Test:false
+    Prop2:Test2:true
   urlType:
     description: 'URL protocol to use to connect to DevOps Deploy hostname'
     required: false
