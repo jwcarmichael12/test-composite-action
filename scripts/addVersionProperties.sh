@@ -42,12 +42,12 @@ then
   exit 1
 fi
 
-IFS=: while read key value secure remainder
+IFS=':' while read key value secure remainder
 do
     echo $key
     echo $value
     echo $secure
-    base_cmd+=" -name \"$key" -value \"$value" -secure $secure"
+    base_cmd+=" -name \"$key\" -value \"$value\" -secure $secure"
     echo $base_cmd
     eval $base_cmd
 done <<< $VERSION_PROPERTIES
