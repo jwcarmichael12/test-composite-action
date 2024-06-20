@@ -136,9 +136,9 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
-        FILES_CMD: "udclient/udclient"
-        FILES_COMPONENTNAME: "${{ inputs.component }}"
-        FILES_VERSIONNAME: "${{ inputs.versionname }}"
+        VERSION_PROPERTIES_CMD: "udclient/udclient"
+        VERSION_PROPERTIES_COMPONENTNAME: "${{ inputs.component }}"
+        VERSION_PROPERTIES_VERSIONNAME: "${{ inputs.versionname }}"
         VERSION_PROPERTIES: "${{ inputs.versionProperties }}"
     
     # Tell devops deploy server that component version creation is complete
