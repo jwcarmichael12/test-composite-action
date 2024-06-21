@@ -11,7 +11,7 @@ base_cmd=""
 # Create the command to execute
 if [ -z $FILES_CMD ]
 then
-  echo "udclient command not specified.  Exiting"
+  echo "udclient command not specified.  Exiting."
   exit 1
 else
   base_cmd="\"$FILES_CMD\" addVersionFiles"
@@ -20,7 +20,7 @@ fi
 # Specify component name
 if [ -z $FILES_COMPONENTNAME ]
 then
-  echo "Component name not specified.  Exiting"
+  echo "Component name not specified.  Exiting."
   exit 1
 else
   base_cmd+=" -component \"$FILES_COMPONENTNAME\""
@@ -29,7 +29,7 @@ fi
 # Specify component version name
 if [ -z "$FILES_VERSIONNAME" ]
 then
-  echo "Version name not specified.  Exiting"
+  echo "Version name not specified.  Exiting."
   exit 1
 else
   base_cmd+=" -version \"$FILES_VERSIONNAME\""
@@ -38,7 +38,7 @@ fi
 # Specify local path
 if [ -z $FILES_BASE ]
 then
-  echo "No base files specified. Exiting"
+  echo "No base files specified. Exiting."
   exit 1
 else
   base_cmd+=" -base \"$FILES_BASE\""
