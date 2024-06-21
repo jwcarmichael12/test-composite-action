@@ -61,7 +61,7 @@ do
       echo "Property secure setting not specified.  Exiting."
       exit 1
     fi
-    property_cmd="$base_cmd -name \"$key\" -value \"$value\" -secure $secure"
+    property_cmd="$base_cmd -name \"$key\" -value \"$value\" -isSecure $secure"
     eval $property_cmd
     unset property_cmd
 done <<< $VERSION_PROPERTIES
