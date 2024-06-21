@@ -97,6 +97,8 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        DS_USERNAME: ${{ inputs.username }}
+        DS_PASSWORD: ${{ inputs.password }}
 
     # Add Version Link if one is specified
     - name: Add component version link
@@ -107,6 +109,8 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        DS_USERNAME: ${{ inputs.username }}
+        DS_PASSWORD: ${{ inputs.password }}
 
     # Add Version Files if specified
     - name: Add component version files
@@ -118,6 +122,8 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        DS_USERNAME: ${{ inputs.username }}
+        DS_PASSWORD: ${{ inputs.password }}
         FILES_CMD: "udclient/udclient"
         FILES_COMPONENTNAME: "${{ inputs.component }}"
         FILES_VERSIONNAME: "${{ inputs.versionname }}"
@@ -137,6 +143,8 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        DS_USERNAME: ${{ inputs.username }}
+        DS_PASSWORD: ${{ inputs.password }}
         VERSION_PROPERTIES_CMD: "udclient/udclient"
         VERSION_PROPERTIES_COMPONENTNAME: "${{ inputs.component }}"
         VERSION_PROPERTIES_VERSIONNAME: "${{ inputs.versionname }}"
@@ -150,3 +158,5 @@ runs:
       env:
         DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
         DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+        DS_USERNAME: ${{ inputs.username }}
+        DS_PASSWORD: ${{ inputs.password }}
