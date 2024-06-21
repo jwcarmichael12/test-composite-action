@@ -50,8 +50,8 @@ inputs:
     description: 'DevOps Deploy authentication token'
     required: false
     secret: true
-  globalFlags:
-    description: 'Global flags to pass to udclient when running CLI commands'
+  globalArgs:
+    description: 'Global arguments to pass to udclient when running CLI commands'
     required: false
 runs:
   using: "composite"
