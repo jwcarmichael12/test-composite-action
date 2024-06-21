@@ -1,9 +1,20 @@
 #!/bin/bash
 # Use udclient to add files to a component version
-# Prerequisites
-#   - udclient authentication environment variables (DS_AUTH_TOKEN or DS_USERNAME/DS_PASSWORD) are set
-#   - udclient weburl (DS_WEB_URL) is set
-#   - JAVA_HOME environment variable is set
+#
+# The following environment variables are REQUIRED to be set prior to invocation of the script:
+# JAVA_HOME
+# DS_AUTH_TOKEN
+# DS_WEB_URL
+# FILES_CMD
+# FILES_COMPONENTNAME
+# FILES_VERSIONNAME
+# FILES_BASE
+#
+# The following environment variables can be OPTIONALLY set prior to invocation of the script:
+# FILES_OFFSET: "${{ inputs.offset }}"
+# FILES_INCLUDE: "${{ inputs.include }}"
+# FILES_EXCLUDE: "${{ inputs.exclude }}"
+# FILES_SAVEEXECUTEBITS: ${{ inputs.saveExecuteBits }}
 
 #set -x
 base_cmd=""
@@ -44,27 +55,29 @@ else
   base_cmd+=" -base \"$FILES_BASE\""
 fi
 
+# Specify target path
 if [ ! -z "$FILES_OFFSET" ]
 then
   base_cmd+=" -offset \"$FILES_OFFSET\""
 fi
 
+# Specify include pattern(s)
 if [ ! -z $FILES_INCLUDE ]
 then
   base_cmd+=" -include \"$FILES_INCLUDE\""
 fi
 
+# Specify exclude pattern(s)
 if [ ! -z $FILES_EXCLUDE ]
 then
   base_cmd+=" -exclude \"$FILES_EXCLUDE\""
 fi
 
+# Specify whether or not to save execute bits on the files
 if [ ! -z $FILES_SAVEEXECUTEBITS ]
 then
   base_cmd+=" -saveExecuteBits \"$FILES_SAVEEXECUTEBITS\""
 fi
-
-echo $base_cmd
 
 # Invoke the udclient to add version files to the component version
 eval $base_cmd

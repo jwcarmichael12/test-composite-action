@@ -1,9 +1,14 @@
 #!/bin/bash
 # Use udclient to add properties to a component version
-# Prerequisites
-#   - udclient authentication environment variables (DS_AUTH_TOKEN or DS_USERNAME/DS_PASSWORD) are set
-#   - udclient weburl (DS_WEB_URL) is set
-#   - JAVA_HOME environment variable is set
+#
+# The following environment variables are REQUIRED to be set prior to invocation of the script:
+# JAVA_HOME
+# DS_AUTH_TOKEN
+# DS_WEB_URL
+# VERSION_PROPERTIES_CMD
+# VERSION_PROPERTIES_COMPONENTNAME
+# VERSION_PROPERTIES_VERSIONNAME
+# VERSION_PROPERTIES
 
 #set -x
 base_cmd=""
