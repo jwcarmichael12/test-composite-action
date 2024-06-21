@@ -42,11 +42,26 @@ then
   exit 1
 fi
 
-# Loop through new-line delineated component version properties and invoke CLI for each property definition
+# Loop through new-line delineated component version properties and invoke CLI for each property definition.
+# Make sure that property name, property value, and property secure setting are all provided.
 while IFS=":" read key value secure remainder
 do
+    if [ -z $"$key" ]
+    then
+      echo "Property name not specified.  Exiting"
+      exit 1
+    fi
+    if [ -z "$value" ]
+    then
+      echo "Property value not specified.  Exiting"
+      exit 1
+    fi
+    if [ -z "$secure" ]
+    then
+      echo "Property secure setting not specified.  Exiting"
+      exit 1
+    fi
     property_cmd="$base_cmd -name \"$key\" -value \"$value\" -secure $secure"
-    echo $property_cmd
     eval $property_cmd
     unset property_cmd
 done <<< $VERSION_PROPERTIES
