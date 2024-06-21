@@ -42,17 +42,12 @@ then
   exit 1
 fi
 
-echo $base_cmd
-
+# Loop through new-line delineated component version properties and invoke CLI for each property definition
 while IFS=":" read key value secure remainder
 do
-    echo $key
-    echo $value
-    echo $secure
-    base_cmd+=" -name \"$key\" -value \"$value\" -secure $secure"
-    echo $base_cmd
-    eval $base_cmd
+    property_cmd="\"$base_cmd\" -name \"$key\" -value \"$value\" -secure $secure"
+    echo $property_cmd
+    eval $property_cmd
+    unset property_cmd
 done <<< $VERSION_PROPERTIES
 
-# Invoke the udclient to add version files to the component version
-# eval $base_cmd
