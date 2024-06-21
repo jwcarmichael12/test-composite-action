@@ -44,8 +44,7 @@ fi
 
 echo $base_cmd
 
-IFS=:
-while read key value secure remainder
+IFS=:while IFS=":" read key value secure remainder
 do
     echo $key
     echo $value
