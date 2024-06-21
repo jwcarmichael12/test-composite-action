@@ -50,11 +50,9 @@ inputs:
     description: 'DevOps Deploy authentication token'
     required: false
     secret: true
-  disableSSLVerification:
-    description: 'skip SSL certificate validation when making HTTPS requests and this is discouraged'
-    required: true
-    type: boolean
-    default: false
+  globalFlags:
+    description: 'Global flags to pass to udclient when running CLI commands'
+    required: false
 runs:
   using: "composite"
   
