@@ -45,7 +45,7 @@ fi
 # Loop through new-line delineated component version properties and invoke CLI for each property definition
 while IFS=":" read key value secure remainder
 do
-    property_cmd="\"$base_cmd\" -name \"$key\" -value \"$value\" -secure $secure"
+    property_cmd="$base_cmd -name \"$key\" -value \"$value\" -secure $secure"
     echo $property_cmd
     eval $property_cmd
     unset property_cmd
