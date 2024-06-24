@@ -76,15 +76,23 @@ runs:
       id: udclient-install
       run: unzip deploy/artifacts/devops-deploy-client.zip
       shell: bash
+
+    # Setup global environment variables used by udclient
+    - name: Set global environment variables
+      id: set-env-variables
+      run: |
+        if [ -z ${{ inputs.authtoken }} ] do; echo "DS_AUTH_TOKEN=${{ inputs.authtoken }}" >> $GITHUB_ENV; fi&&
+        echo "DS_WEB_URL= ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}&&
+        export
       
     # Create component version
     - name: Create component version
       id: create-component-version
       run: export&&udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
       shell: bash
-      env:
-        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
+      #env:
+        #DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
+        #DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Link if one is specified
     - name: Add component version link
