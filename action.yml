@@ -89,7 +89,7 @@ runs:
     # Create component version
     - name: Create component version
       id: create-component-version
-      run: udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
+      run: udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true --verbose
       shell: bash
 
     # Add Version Link if one is specified
