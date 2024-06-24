@@ -81,7 +81,7 @@ runs:
     - name: Set global environment variables
       id: set-env-variables
       run: |
-        if [ -z ${{ inputs.authtoken }} ] do; echo "DS_AUTH_TOKEN=${{ inputs.authtoken }}" >> $GITHUB_ENV; fi&&
+        if [ -z ${{ inputs.authtoken }} ] then echo "DS_AUTH_TOKEN=${{ inputs.authtoken }}" >> $GITHUB_ENV; fi&&
         echo "DS_WEB_URL= ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}&&
         export
       
