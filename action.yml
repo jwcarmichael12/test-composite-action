@@ -84,6 +84,7 @@ runs:
         if [ -z ${{ inputs.authtoken }} ] then echo "DS_AUTH_TOKEN=${{ inputs.authtoken }}" >> $GITHUB_ENV; fi&&
         echo "DS_WEB_URL= ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}"&&
         export
+      shell: bash
       
     # Create component version
     - name: Create component version
