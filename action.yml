@@ -91,9 +91,6 @@ runs:
       id: create-component-version
       run: export&&udclient/udclient createVersion -component "${{ inputs.component }}" -name "${{ inputs.versionname }}"  --importing true
       shell: bash
-      #env:
-        #DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        #DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Link if one is specified
     - name: Add component version link
@@ -101,9 +98,6 @@ runs:
       if: inputs.linkName && inputs.link
       run: udclient/udclient addVersionLink -component "${{ inputs.component }}" -version "${{ inputs.versionname }}" -linkName "${{ inputs.linkName }}" -link "${{ inputs.link }}"
       shell: bash
-      env:
-        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
 
     # Add Version Files if specified
     - name: Add component version files
@@ -113,8 +107,6 @@ runs:
         deploy/scripts/addVersionFiles.sh
       shell: bash
       env:
-        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
         FILES_CMD: "udclient/udclient"
         FILES_COMPONENTNAME: "${{ inputs.component }}"
         FILES_VERSIONNAME: "${{ inputs.versionname }}"
@@ -132,8 +124,6 @@ runs:
         deploy/scripts/addVersionProperties.sh
       shell: bash
       env:
-        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
         VERSION_PROPERTIES_CMD: "udclient/udclient"
         VERSION_PROPERTIES_COMPONENTNAME: "${{ inputs.component }}"
         VERSION_PROPERTIES_VERSIONNAME: "${{ inputs.versionname }}"
@@ -144,6 +134,3 @@ runs:
       id: finish-importing
       run: udclient/udclient finishedImporting -component "${{ inputs.component }}" -version "${{ inputs.versionname }}"
       shell: bash
-      env:
-        DS_WEB_URL: ${{ inputs.urlType }}//${{ inputs.hostname }}:${{ inputs.port }}
-        DS_AUTH_TOKEN: ${{ inputs.authtoken }}
